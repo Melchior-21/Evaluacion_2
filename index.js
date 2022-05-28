@@ -1,12 +1,18 @@
-const express=require('express');
-const app= express();
-const rutas = require('./routes/index.routes')
-const morgan = require('morgan')
-app.use(morgan("dev"))
-
-app.use(express.urlencoded({ extended: false }));
-app.listen(3000, ()=>{ console.log('Escuchando en el puerto 3000')})
+const utils = require('../resources,utils');
+const express = require ('express')
+const app = express()
+es6Renderer = require('express-es6-template-engine')
+constRouter = require('../routes/main');
+const bodyParser = require ('body-parser');
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: false}));
+app.use('/',router);
+app.engine('html', es6Renderer);
+app.set('views', 'views');
+app.set('view engine', 'html');
 app.use(express.json());
 
-app.use(rutas)
-
+// server listen
+app.listen(3000,() =>{
+    console.log('escuchando en el puerto 3000')
+})
